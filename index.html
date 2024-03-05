@@ -11,11 +11,26 @@
         <h3>Comming Soon</h3><br>
         <h1><b>Our Brand New </b><br><b>Website Is On It's Way</b></h1>
         <h6>Subscribe for more details</h6><br><br>
-        <div id="mailbox">
-            <input id="mail" type="email" placeholder="Enter your Email">
-            <button id="send">Subscribe</button>
-        </div>
+        <form id="mailbox" name="submit-to-google-sheet">
+            <input id="mail" type="email" placeholder="Enter your Email" required>
+            <button id="send" type="submit">Subscribe</button>
+        </form>
+        <span id="reply"></span>
     </div>
     <script src="main.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxLGqCmNtFSdGjrxUVP5JU8bZdZxn4AUB0Oyv9nLTCbxYMJAYFjZHvTSwiqlK90LFXGTQ/exec'
+        const form = document.forms['submit-to-google-sheet']
+        let msg=document.getElementById("reply");
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                //console.log('Success!', response)
+                msg.innerText="Thanks for subscribing !";
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 </body>
 </html>
