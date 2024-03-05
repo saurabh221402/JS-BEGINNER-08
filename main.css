@@ -1,0 +1,38 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: beige;
+}
+
+#box
+{
+    height: 50vh;
+    min-height: 500px;
+    width: 35%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute; 
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%,-30%);
+}
+input{
+    height: 50px;
+    width: 80%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    outline: none;
+    border-style: none; 
+    font-size: medium;
+}
+button{
+    height: 50px;
+    width: 60px; 
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-style: none;
+}
