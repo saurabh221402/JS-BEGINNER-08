@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-    <title>Document</title>
+    <title>Email Subscription page</title>
 </head>
 <body>
     <div id="box">
@@ -12,22 +12,26 @@
         <h1><b>Our Brand New </b><br><b>Website Is On It's Way</b></h1>
         <h6>Subscribe for more details</h6><br><br>
         <form id="mailbox" name="submit-to-google-sheet">
-            <input id="mail" type="email" placeholder="Enter your Email" required>
+            <input id="mail" name="Email" type="email" placeholder="Enter your Email" required><!--input name = Email should same as name of row feild name in google sheet name-->
             <button id="send" type="submit">Subscribe</button>
         </form>
         <span id="reply"></span>
-    </div>
-    <script src="main.js"></script>
+    </div> 
+    
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxLGqCmNtFSdGjrxUVP5JU8bZdZxn4AUB0Oyv9nLTCbxYMJAYFjZHvTSwiqlK90LFXGTQ/exec'
-        const form = document.forms['submit-to-google-sheet']
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwmCr8rua71dKYJXSXEw9pjI0mtLcAtxVCdwf7QmchOblnduKAj8V8W7pO90fcQcCwKuQ/exec';//this is link of web app form in goole sheet using app script(https://github.com/jamiewilson/form-to-google-sheets)
+        const form = document.forms['submit-to-google-sheet']    //here we dom form
         let msg=document.getElementById("reply");
         form.addEventListener('submit', e => {
           e.preventDefault()
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                //console.log('Success!', response)
+                console.log('Success!', response)
                 msg.innerText="Thanks for subscribing !";
+                setTimeout(()=>{
+                    msg.innerText="";
+                },5000);
+                form.reset(); 
             })
             .catch(error => console.error('Error!', error.message))
         })
